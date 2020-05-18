@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qp.player.mapper.PlayerMapper">
+
+	<resultMap type="Player" id="PlayerResult">
+		<result property="id"    column="id"    />
+		<result property="nickName"    column="nick_name"    />
+		<result property="hadIcon"    column="had_icon"    />
+		<result property="sex"    column="sex"    />
+		<result property="gold"    column="gold"    />
+		<result property="vip"    column="vip"    />
+		<result property="isOnline"    column="is_online"    />
+		<result property="headIconFrame"    column="head_icon_frame"    />
+		<result property="nickNameModifyTime"    column="nick_name_modify_time"    />
+		<result property="safeBoxGold"    column="safe_box_gold"    />
+		<result property="safeBoxPwd"    column="safe_box_pwd"    />
+		<result property="password"    column="password"    />
+		<result property="vipAdvanceTime"    column="vip_advance_time"    />
+		<result property="layer"    column="layer"    />
+		<result property="getedUpRewardVipLvSlice"    column="geted_up_reward_vip_lv_slice"    />
+		<result property="lastLoginTime"    column="last_login_time"    />
+		<result property="lastLoginIp"    column="last_login_ip"    />
+		<result property="createTime"    column="create_time"    />
+		<result property="lastLoginDeviceType"    column="last_login_device_type"    />
+		<result property="loginDays"    column="login_days"    />
+		<result property="loginTimes"    column="login_times"    />
+		<result property="todayLoginTimes"    column="today_login_times"    />
+		<result property="onlineTime"    column="online_time"    />
+		<result property="todayOnlineTime"    column="today_online_time"    />
+		<result property="isFirstPay"    column="is_first_pay"    />
+		<result property="deviceType"    column="device_type"    />
+		<result property="loseGoldMax"    column="lose_gold_max"    />
+		<result property="loseAlarmMax"    column="lose_alarm_max"    />
+		<result property="winAlarmMax"    column="win_alarm_max"    />
+		<result property="goodCardRate"    column="good_card_rate"    />
+		<result property="bindDevice"    column="bind_device"    />
+		<result property="bindIp"    column="bind_ip"    />
+		<result property="openGames"    column="open_games"    />
+		<result property="lastLogoutTime"    column="last_logout_time"    />
+		<result property="gamePlatform"    column="game_platform"    />
+		<result property="gameType"    column="game_type"    />
+		<result property="gameId"    column="game_id"    />
+		<result property="dayRewardGetDay"    column="day_reward_get_day"    />
+		<result property="dayRewardGetTime"    column="day_reward_get_time"    />
+		<result property="siteId"    column="site_id"    />
+		<result property="phone"    column="phone"    />
+		<result property="salt"    column="salt"    />
+		<result property="realName"    column="real_name"    />
+		<result property="rebate"    column="rebate"    />
+		<result property="accountType"    column="account_type"    />
+		<result property="status"    column="status"    />
+		<result property="agentStatus"    column="agent_status"    />
+		<result property="role"    column="role"    />
+		<result property="isFollow"    column="is_follow"    />
+		<result property="agentCode"    column="agent_code"    />
+		<result property="account"    column="account"    />
+		<result property="weiXinUnionId"    column="wei_xin_union_id"    />
+		<result property="guestUnionId"    column="guest_union_id"    />
+		<result property="wxOpenId"    column="wx_open_id"    />
+		<result property="aliOpenId"    column="ali_open_id"    />
+		<result property="createIp"    column="create_ip"    />
+		<result property="createDeviceCode"    column="create_device_code"    />
+		<result property="wxAccount"    column="wx_account"    />
+		<result property="wxNickname"    column="wx_Nickname"    />
+		<result property="wxCollectionCode"    column="wx_collection_code"    />
+		<result property="aliAccount"    column="ali_account"    />
+		<result property="aliNickname"    column="ali_nickname"    />
+		<result property="note"    column="note"    />
+		<result property="aliCollectionCode"    column="ali_collection_code"    />
+		<result property="bankcardNo"    column="bankcard_no"    />
+		<result property="bankMark"    column="bank_mark"    />
+		<result property="bankUsername"    column="bank_username"    />
+		<result property="bankAddress"    column="bank_address"    />
+		<result property="qqAccount"    column="qq_account"    />
+	</resultMap>
+
+	<sql id="selectPlayerVo">
+        select id, nick_name, had_icon, sex, gold, vip, is_online, head_icon_frame, nick_name_modify_time, safe_box_gold, safe_box_pwd, password, vip_advance_time, layer, geted_up_reward_vip_lv_slice, last_login_time, last_login_ip, create_time, last_login_device_type, login_days, login_times, today_login_times, online_time, today_online_time, is_first_pay, device_type, lose_gold_max, lose_alarm_max, win_alarm_max, good_card_rate, bind_device, bind_ip, open_games, last_logout_time, game_platform, game_type, game_id, day_reward_get_day, day_reward_get_time, site_id, phone, salt, real_name, rebate, account_type, status, agent_status, role, is_follow, agent_code, account, wei_xin_union_id, guest_union_id, wx_open_id, ali_open_id, create_ip, create_device_code, wx_account, wx_Nickname, wx_collection_code, ali_account, ali_nickname, note, ali_collection_code, bankcard_no, bank_mark, bank_username, bank_address, qq_account from player
+    </sql>
+
+	<select id="selectPlayerList" parameterType="Player" resultMap="PlayerResult">
+		<include refid="selectPlayerVo"/>
+		<where>
+			<if test="nickName != null  and nickName != ''"> and nick_name like concat('%', #{nickName}, '%')</if>
+			<if test="realName != null  and realName != ''"> and real_name like concat('%', #{realName}, '%')</if>
+			<if test="wxNickname != null  and wxNickname != ''"> and wx_Nickname like concat('%', #{wxNickname}, '%')</if>
+			<if test="aliNickname != null  and aliNickname != ''"> and ali_nickname like concat('%', #{aliNickname}, '%')</if>
+			<if test="bankUsername != null  and bankUsername != ''"> and bank_username like concat('%', #{bankUsername}, '%')</if>
+		</where>
+	</select>
+
+	<select id="selectPlayerById" parameterType="Long" resultMap="PlayerResult">
+		<include refid="selectPlayerVo"/>
+		where id = #{id}
+	</select>
+
+	<insert id="insertPlayer" parameterType="Player">
+		insert into player
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null ">id,</if>
+			<if test="nickName != null  and nickName != ''">nick_name,</if>
+			<if test="hadIcon != null ">had_icon,</if>
+			<if test="sex != null ">sex,</if>
+			<if test="gold != null ">gold,</if>
+			<if test="vip != null ">vip,</if>
+			<if test="isOnline != null  and isOnline != ''">is_online,</if>
+			<if test="headIconFrame != null ">head_icon_frame,</if>
+			<if test="nickNameModifyTime != null ">nick_name_modify_time,</if>
+			<if test="safeBoxGold != null ">safe_box_gold,</if>
+			<if test="safeBoxPwd != null  and safeBoxPwd != ''">safe_box_pwd,</if>
+			<if test="password != null  and password != ''">password,</if>
+			<if test="vipAdvanceTime != null ">vip_advance_time,</if>
+			<if test="layer != null ">layer,</if>
+			<if test="getedUpRewardVipLvSlice != null ">geted_up_reward_vip_lv_slice,</if>
+			<if test="lastLoginTime != null ">last_login_time,</if>
+			<if test="lastLoginIp != null  and lastLoginIp != ''">last_login_ip,</if>
+			<if test="createTime != null ">create_time,</if>
+			<if test="lastLoginDeviceType != null ">last_login_device_type,</if>
+			<if test="loginDays != null ">login_days,</if>
+			<if test="loginTimes != null ">login_times,</if>
+			<if test="todayLoginTimes != null ">today_login_times,</if>
+			<if test="onlineTime != null ">online_time,</if>
+			<if test="todayOnlineTime != null ">today_online_time,</if>
+			<if test="isFirstPay != null ">is_first_pay,</if>
+			<if test="deviceType != null ">device_type,</if>
+			<if test="loseGoldMax != null ">lose_gold_max,</if>
+			<if test="loseAlarmMax != null ">lose_alarm_max,</if>
+			<if test="winAlarmMax != null ">win_alarm_max,</if>
+			<if test="goodCardRate != null ">good_card_rate,</if>
+			<if test="bindDevice != null  and bindDevice != ''">bind_device,</if>
+			<if test="bindIp != null  and bindIp != ''">bind_ip,</if>
+			<if test="openGames != null ">open_games,</if>
+			<if test="lastLogoutTime != null ">last_logout_time,</if>
+			<if test="gamePlatform != null ">game_platform,</if>
+			<if test="gameType != null ">game_type,</if>
+			<if test="gameId != null ">game_id,</if>
+			<if test="dayRewardGetDay != null ">day_reward_get_day,</if>
+			<if test="dayRewardGetTime != null ">day_reward_get_time,</if>
+			<if test="siteId != null ">site_id,</if>
+			<if test="phone != null  and phone != ''">phone,</if>
+			<if test="salt != null  and salt != ''">salt,</if>
+			<if test="realName != null  and realName != ''">real_name,</if>
+			<if test="rebate != null ">rebate,</if>
+			<if test="accountType != null ">account_type,</if>
+			<if test="status != null ">status,</if>
+			<if test="agentStatus != null ">agent_status,</if>
+			<if test="role != null ">role,</if>
+			<if test="isFollow != null ">is_follow,</if>
+			<if test="agentCode != null  and agentCode != ''">agent_code,</if>
+			<if test="account != null  and account != ''">account,</if>
+			<if test="weiXinUnionId != null  and weiXinUnionId != ''">wei_xin_union_id,</if>
+			<if test="guestUnionId != null  and guestUnionId != ''">guest_union_id,</if>
+			<if test="wxOpenId != null  and wxOpenId != ''">wx_open_id,</if>
+			<if test="aliOpenId != null  and aliOpenId != ''">ali_open_id,</if>
+			<if test="createIp != null  and createIp != ''">create_ip,</if>
+			<if test="createDeviceCode != null  and createDeviceCode != ''">create_device_code,</if>
+			<if test="wxAccount != null  and wxAccount != ''">wx_account,</if>
+			<if test="wxNickname != null  and wxNickname != ''">wx_Nickname,</if>
+			<if test="wxCollectionCode != null  and wxCollectionCode != ''">wx_collection_code,</if>
+			<if test="aliAccount != null  and aliAccount != ''">ali_account,</if>
+			<if test="aliNickname != null  and aliNickname != ''">ali_nickname,</if>
+			<if test="note != null  and note != ''">note,</if>
+			<if test="aliCollectionCode != null  and aliCollectionCode != ''">ali_collection_code,</if>
+			<if test="bankcardNo != null  and bankcardNo != ''">bankcard_no,</if>
+			<if test="bankMark != null  and bankMark != ''">bank_mark,</if>
+			<if test="bankUsername != null  and bankUsername != ''">bank_username,</if>
+			<if test="bankAddress != null  and bankAddress != ''">bank_address,</if>
+			<if test="qqAccount != null  and qqAccount != ''">qq_account,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null ">#{id},</if>
+			<if test="nickName != null  and nickName != ''">#{nickName},</if>
+			<if test="hadIcon != null ">#{hadIcon},</if>
+			<if test="sex != null ">#{sex},</if>
+			<if test="gold != null ">#{gold},</if>
+			<if test="vip != null ">#{vip},</if>
+			<if test="isOnline != null  and isOnline != ''">#{isOnline},</if>
+			<if test="headIconFrame != null ">#{headIconFrame},</if>
+			<if test="nickNameModifyTime != null ">#{nickNameModifyTime},</if>
+			<if test="safeBoxGold != null ">#{safeBoxGold},</if>
+			<if test="safeBoxPwd != null  and safeBoxPwd != ''">#{safeBoxPwd},</if>
+			<if test="password != null  and password != ''">#{password},</if>
+			<if test="vipAdvanceTime != null ">#{vipAdvanceTime},</if>
+			<if test="layer != null ">#{layer},</if>
+			<if test="getedUpRewardVipLvSlice != null ">#{getedUpRewardVipLvSlice},</if>
+			<if test="lastLoginTime != null ">#{lastLoginTime},</if>
+			<if test="lastLoginIp != null  and lastLoginIp != ''">#{lastLoginIp},</if>
+			<if test="createTime != null ">#{createTime},</if>
+			<if test="lastLoginDeviceType != null ">#{lastLoginDeviceType},</if>
+			<if test="loginDays != null ">#{loginDays},</if>
+			<if test="loginTimes != null ">#{loginTimes},</if>
+			<if test="todayLoginTimes != null ">#{todayLoginTimes},</if>
+			<if test="onlineTime != null ">#{onlineTime},</if>
+			<if test="todayOnlineTime != null ">#{todayOnlineTime},</if>
+			<if test="isFirstPay != null ">#{isFirstPay},</if>
+			<if test="deviceType != null ">#{deviceType},</if>
+			<if test="loseGoldMax != null ">#{loseGoldMax},</if>
+			<if test="loseAlarmMax != null ">#{loseAlarmMax},</if>
+			<if test="winAlarmMax != null ">#{winAlarmMax},</if>
+			<if test="goodCardRate != null ">#{goodCardRate},</if>
+			<if test="bindDevice != null  and bindDevice != ''">#{bindDevice},</if>
+			<if test="bindIp != null  and bindIp != ''">#{bindIp},</if>
+			<if test="openGames != null ">#{openGames},</if>
+			<if test="lastLogoutTime != null ">#{lastLogoutTime},</if>
+			<if test="gamePlatform != null ">#{gamePlatform},</if>
+			<if test="gameType != null ">#{gameType},</if>
+			<if test="gameId != null ">#{gameId},</if>
+			<if test="dayRewardGetDay != null ">#{dayRewardGetDay},</if>
+			<if test="dayRewardGetTime != null ">#{dayRewardGetTime},</if>
+			<if test="siteId != null ">#{siteId},</if>
+			<if test="phone != null  and phone != ''">#{phone},</if>
+			<if test="salt != null  and salt != ''">#{salt},</if>
+			<if test="realName != null  and realName != ''">#{realName},</if>
+			<if test="rebate != null ">#{rebate},</if>
+			<if test="accountType != null ">#{accountType},</if>
+			<if test="status != null ">#{status},</if>
+			<if test="agentStatus != null ">#{agentStatus},</if>
+			<if test="role != null ">#{role},</if>
+			<if test="isFollow != null ">#{isFollow},</if>
+			<if test="agentCode != null  and agentCode != ''">#{agentCode},</if>
+			<if test="account != null  and account != ''">#{account},</if>
+			<if test="weiXinUnionId != null  and weiXinUnionId != ''">#{weiXinUnionId},</if>
+			<if test="guestUnionId != null  and guestUnionId != ''">#{guestUnionId},</if>
+			<if test="wxOpenId != null  and wxOpenId != ''">#{wxOpenId},</if>
+			<if test="aliOpenId != null  and aliOpenId != ''">#{aliOpenId},</if>
+			<if test="createIp != null  and createIp != ''">#{createIp},</if>
+			<if test="createDeviceCode != null  and createDeviceCode != ''">#{createDeviceCode},</if>
+			<if test="wxAccount != null  and wxAccount != ''">#{wxAccount},</if>
+			<if test="wxNickname != null  and wxNickname != ''">#{wxNickname},</if>
+			<if test="wxCollectionCode != null  and wxCollectionCode != ''">#{wxCollectionCode},</if>
+			<if test="aliAccount != null  and aliAccount != ''">#{aliAccount},</if>
+			<if test="aliNickname != null  and aliNickname != ''">#{aliNickname},</if>
+			<if test="note != null  and note != ''">#{note},</if>
+			<if test="aliCollectionCode != null  and aliCollectionCode != ''">#{aliCollectionCode},</if>
+			<if test="bankcardNo != null  and bankcardNo != ''">#{bankcardNo},</if>
+			<if test="bankMark != null  and bankMark != ''">#{bankMark},</if>
+			<if test="bankUsername != null  and bankUsername != ''">#{bankUsername},</if>
+			<if test="bankAddress != null  and bankAddress != ''">#{bankAddress},</if>
+			<if test="qqAccount != null  and qqAccount != ''">#{qqAccount},</if>
+		</trim>
+	</insert>
+
+	<update id="updatePlayer" parameterType="Player">
+		update player
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="nickName != null  and nickName != ''">nick_name = #{nickName},</if>
+			<if test="hadIcon != null ">had_icon = #{hadIcon},</if>
+			<if test="sex != null ">sex = #{sex},</if>
+			<if test="gold != null ">gold = #{gold},</if>
+			<if test="vip != null ">vip = #{vip},</if>
+			<if test="isOnline != null  and isOnline != ''">is_online = #{isOnline},</if>
+			<if test="headIconFrame != null ">head_icon_frame = #{headIconFrame},</if>
+			<if test="nickNameModifyTime != null ">nick_name_modify_time = #{nickNameModifyTime},</if>
+			<if test="safeBoxGold != null ">safe_box_gold = #{safeBoxGold},</if>
+			<if test="safeBoxPwd != null  and safeBoxPwd != ''">safe_box_pwd = #{safeBoxPwd},</if>
+			<if test="password != null  and password != ''">password = #{password},</if>
+			<if test="vipAdvanceTime != null ">vip_advance_time = #{vipAdvanceTime},</if>
+			<if test="layer != null ">layer = #{layer},</if>
+			<if test="getedUpRewardVipLvSlice != null ">geted_up_reward_vip_lv_slice = #{getedUpRewardVipLvSlice},</if>
+			<if test="lastLoginTime != null ">last_login_time = #{lastLoginTime},</if>
+			<if test="lastLoginIp != null  and lastLoginIp != ''">last_login_ip = #{lastLoginIp},</if>
+			<if test="createTime != null ">create_time = #{createTime},</if>
+			<if test="lastLoginDeviceType != null ">last_login_device_type = #{lastLoginDeviceType},</if>
+			<if test="loginDays != null ">login_days = #{loginDays},</if>
+			<if test="loginTimes != null ">login_times = #{loginTimes},</if>
+			<if test="todayLoginTimes != null ">today_login_times = #{todayLoginTimes},</if>
+			<if test="onlineTime != null ">online_time = #{onlineTime},</if>
+			<if test="todayOnlineTime != null ">today_online_time = #{todayOnlineTime},</if>
+			<if test="isFirstPay != null ">is_first_pay = #{isFirstPay},</if>
+			<if test="deviceType != null ">device_type = #{deviceType},</if>
+			<if test="loseGoldMax != null ">lose_gold_max = #{loseGoldMax},</if>
+			<if test="loseAlarmMax != null ">lose_alarm_max = #{loseAlarmMax},</if>
+			<if test="winAlarmMax != null ">win_alarm_max = #{winAlarmMax},</if>
+			<if test="goodCardRate != null ">good_card_rate = #{goodCardRate},</if>
+			<if test="bindDevice != null  and bindDevice != ''">bind_device = #{bindDevice},</if>
+			<if test="bindIp != null  and bindIp != ''">bind_ip = #{bindIp},</if>
+			<if test="openGames != null ">open_games = #{openGames},</if>
+			<if test="lastLogoutTime != null ">last_logout_time = #{lastLogoutTime},</if>
+			<if test="gamePlatform != null ">game_platform = #{gamePlatform},</if>
+			<if test="gameType != null ">game_type = #{gameType},</if>
+			<if test="gameId != null ">game_id = #{gameId},</if>
+			<if test="dayRewardGetDay != null ">day_reward_get_day = #{dayRewardGetDay},</if>
+			<if test="dayRewardGetTime != null ">day_reward_get_time = #{dayRewardGetTime},</if>
+			<if test="siteId != null ">site_id = #{siteId},</if>
+			<if test="phone != null  and phone != ''">phone = #{phone},</if>
+			<if test="salt != null  and salt != ''">salt = #{salt},</if>
+			<if test="realName != null  and realName != ''">real_name = #{realName},</if>
+			<if test="rebate != null ">rebate = #{rebate},</if>
+			<if test="accountType != null ">account_type = #{accountType},</if>
+			<if test="status != null ">status = #{status},</if>
+			<if test="agentStatus != null ">agent_status = #{agentStatus},</if>
+			<if test="role != null ">role = #{role},</if>
+			<if test="isFollow != null ">is_follow = #{isFollow},</if>
+			<if test="agentCode != null  and agentCode != ''">agent_code = #{agentCode},</if>
+			<if test="account != null  and account != ''">account = #{account},</if>
+			<if test="weiXinUnionId != null  and weiXinUnionId != ''">wei_xin_union_id = #{weiXinUnionId},</if>
+			<if test="guestUnionId != null  and guestUnionId != ''">guest_union_id = #{guestUnionId},</if>
+			<if test="wxOpenId != null  and wxOpenId != ''">wx_open_id = #{wxOpenId},</if>
+			<if test="aliOpenId != null  and aliOpenId != ''">ali_open_id = #{aliOpenId},</if>
+			<if test="createIp != null  and createIp != ''">create_ip = #{createIp},</if>
+			<if test="createDeviceCode != null  and createDeviceCode != ''">create_device_code = #{createDeviceCode},</if>
+			<if test="wxAccount != null  and wxAccount != ''">wx_account = #{wxAccount},</if>
+			<if test="wxNickname != null  and wxNickname != ''">wx_Nickname = #{wxNickname},</if>
+			<if test="wxCollectionCode != null  and wxCollectionCode != ''">wx_collection_code = #{wxCollectionCode},</if>
+			<if test="aliAccount != null  and aliAccount != ''">ali_account = #{aliAccount},</if>
+			<if test="aliNickname != null  and aliNickname != ''">ali_nickname = #{aliNickname},</if>
+			<if test="note != null  and note != ''">note = #{note},</if>
+			<if test="aliCollectionCode != null  and aliCollectionCode != ''">ali_collection_code = #{aliCollectionCode},</if>
+			<if test="bankcardNo != null  and bankcardNo != ''">bankcard_no = #{bankcardNo},</if>
+			<if test="bankMark != null  and bankMark != ''">bank_mark = #{bankMark},</if>
+			<if test="bankUsername != null  and bankUsername != ''">bank_username = #{bankUsername},</if>
+			<if test="bankAddress != null  and bankAddress != ''">bank_address = #{bankAddress},</if>
+			<if test="qqAccount != null  and qqAccount != ''">qq_account = #{qqAccount},</if>
+		</trim>
+		where id = #{id}
+	</update>
+
+	<delete id="deletePlayerById" parameterType="Long">
+        delete from player where id = #{id}
+    </delete>
+
+	<delete id="deletePlayerByIds" parameterType="String">
+		delete from player where id in
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

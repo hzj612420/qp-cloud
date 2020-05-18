@@ -45,7 +45,7 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Project Cloud 接口文档")
+                .title("开元棋牌 Cloud 接口文档")
                 .description("SpringCloud接口文档")
                 .contact(new Contact("wind", "", ""))
                 .version("1.0.1")

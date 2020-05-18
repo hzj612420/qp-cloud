@@ -59,8 +59,10 @@ idea插件
     阿里巴巴代码规范检查插件alibaba java code guidelines(具体规范再doc下) 
     安装好后重启idea 右键项目下面就可以看到编码规范检查 看看代码有多少是不规范的
 
-启动前需要确认本地开了redis 端口6379 mysql建立数据库，执行sql文件夹中的sql 端口3306 
-账号密码看配置文件config/project-system-dev.yml
+启动前需要确认
+* 本地开了redis 端口6379 
+* mysql建立数据库，执行sql文件夹中的sql 端口3306 
+* 账号密码看配置文件config/project-system-dev.yml
 
 ### 启动顺序
 * EurekaApplication
@@ -69,6 +71,9 @@ idea插件
 * SystemApplication
 * AuthApplication(可选)
 * MonitorApplication(可选)
+* PlayerApplication
+
+接口文档地址：http://localhost:9572/doc.html
 
 ### 项目是参考 `ruoyi-cloud` 编写  
 https://github.com/zhangmrit/ruoyi-cloud

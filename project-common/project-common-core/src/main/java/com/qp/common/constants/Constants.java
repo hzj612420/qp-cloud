@@ -87,6 +87,7 @@ public class Constants {
     public interface ServiceNameConstants {
         String SYSTEM_SERVICE = "project-system"; //system模块
         String AUTH_SERVICE = "project-auth"; //auth模块
+        String PLAYER_SERVICE = "project-player"; //player模块
     }
 
     /**
