@@ -1,4 +1,4 @@
-package com.qp.auth;
+package com.qp;
 
 import com.qp.system.annotation.EnableRyFeignClients;
 import org.springframework.boot.SpringApplication;
