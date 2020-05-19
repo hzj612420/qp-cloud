@@ -838,4 +838,17 @@ public class Convert {
         }
         return head + s.replaceAll("(零.)*零元", "元").replaceFirst("(零.)+", "").replaceAll("(零.)+", "零").replaceAll("^整$", "零元整");
     }
+
+    /**
+     * 将对象转为字符串<br>
+     * 1、Byte数组和ByteBuffer会被转换为对应字符串的数组 2、对象数组会调用Arrays.toString方法
+     *
+     * @param obj 对象
+     * @return 字符串
+     */
+    public static String utf8Str(Object obj)
+    {
+        return str(obj, CharsetKit.CHARSET_UTF_8);
+    }
+
 }

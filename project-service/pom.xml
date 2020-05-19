@@ -15,6 +15,7 @@
     <module>project-auth</module>
     <module>project-system</module>
     <module>project-player</module>
+    <module>project-gen</module>
   </modules>
 
 </project>

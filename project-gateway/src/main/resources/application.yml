@@ -49,10 +49,19 @@ spring:
             filters:
               # 限流配置
               - StripPrefix=1
+          #player 玩家
           - id: project-player
             uri: lb://project-player
             predicates:
               - Path=/player/**
+            filters:
+              # 限流配置
+              - StripPrefix=1
+          #gen 代码生成器
+          - id: project-gen
+            uri: lb://project-gen
+            predicates:
+              - Path=/gen/**
             filters:
               # 限流配置
               - StripPrefix=1
