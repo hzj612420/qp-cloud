@@ -1,13 +1,16 @@
 package com.qp.player.service.impl;
 
 
+import com.qp.common.constants.Constants;
 import com.qp.common.core.text.Convert;
+import com.qp.common.redis.utils.RedisUtil;
 import com.qp.common.utils.DateUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.qp.player.constant.PlayerConstant;
 import com.qp.player.mapper.PlayerMapper;
 import com.qp.player.model.Player;
 import com.qp.player.service.IPlayerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -23,6 +26,8 @@ public class PlayerServiceImpl implements IPlayerService
 {
     @Autowired
     private PlayerMapper playerMapper;
+    @Autowired
+    private RedisUtil redisUtil;
 
     /**
      * 查询玩家
@@ -33,7 +38,15 @@ public class PlayerServiceImpl implements IPlayerService
     @Override
     public Player selectPlayerById(Long id)
     {
-        return playerMapper.selectPlayerById(id);
+        /**
+         * 先查缓存有没有这个对象，没有就查数据库并设置缓存
+         **/
+        Player player = redisUtil.get(PlayerConstant.PLAYER_OBJ + id,Player.class);
+        if (player == null) {
+           player = playerMapper.selectPlayerById(id);
+           redisUtil.set(PlayerConstant.PLAYER_OBJ + id, player, PlayerConstant.EXPIRE);
+       }
+        return player;
     }
 
     /**
@@ -70,6 +83,7 @@ public class PlayerServiceImpl implements IPlayerService
     @Override
     public int updatePlayer(Player player)
     {
+        redisUtil.delete(PlayerConstant.PLAYER_OBJ + player.getId());
         player.setUpdateTime(DateUtils.getNowDate());
         return playerMapper.updatePlayer(player);
     }
@@ -83,7 +97,11 @@ public class PlayerServiceImpl implements IPlayerService
     @Override
     public int deletePlayerByIds(String ids)
     {
-        return playerMapper.deletePlayerByIds(Convert.toStrArray(ids));
+        String[] idList=Convert.toStrArray(ids);
+        for (String id: idList ) {
+            redisUtil.delete(PlayerConstant.PLAYER_OBJ + id);
+        }
+        return playerMapper.deletePlayerByIds(idList);
     }
 
     /**
@@ -95,6 +113,7 @@ public class PlayerServiceImpl implements IPlayerService
     @Override
     public int deletePlayerById(Long id)
     {
+        redisUtil.delete(PlayerConstant.PLAYER_OBJ + id);
         return playerMapper.deletePlayerById(id);
     }
 }

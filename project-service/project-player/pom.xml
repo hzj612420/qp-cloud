@@ -99,6 +99,12 @@
       <artifactId>project-common-redis</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <!-- log模块 -->
+    <dependency>
+      <groupId>com.qp.cloud</groupId>
+      <artifactId>project-common-log</artifactId>
+      <version>${project.version}</version>
+    </dependency>
 
     <dependency>
       <groupId>com.alibaba</groupId>
