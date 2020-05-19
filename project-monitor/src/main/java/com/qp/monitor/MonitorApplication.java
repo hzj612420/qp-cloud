@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * 监控中心
- * @author KyrieCao
+ * @author Meixi
  * @version v1.0.0
  * @date 2020/3/4 16:04 04
  */

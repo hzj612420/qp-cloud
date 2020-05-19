@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
 
 /**
  * Redis切面类
- * @author KyrieCao
+ * @author Meixi
  * @date 2020/3/7 10:58
  */
 @Component
@@ -36,7 +36,7 @@ public class RedisAspect {
 
     /**
      * 定义切入点，使用了 @RedisCache 的方法
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/7 11:21
      */
     @Pointcut("@annotation(com.qp.common.redis.annotation.RedisCache)")
@@ -44,7 +44,7 @@ public class RedisAspect {
 
     /**
      * 定义切入点，使用了 @RedisEvict 的方法
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/7 11:22
      */
     @Pointcut("@annotation(com.qp.common.redis.annotation.RedisEvict)")
@@ -54,7 +54,7 @@ public class RedisAspect {
      * 环绕通知，方法拦截器
      * @param point     切入点
      * @return Object
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/7 11:34
      */
     @Around("redisCachePoint()")
@@ -100,7 +100,7 @@ public class RedisAspect {
     /**
      * 后置通知 清除RedisKey
      * @param point     切入点
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/7 11:26
      */
     @After("redisEvictPoint()")
@@ -121,7 +121,7 @@ public class RedisAspect {
      * @param method    方法
      * @param args      参数
      * @return String
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/7 11:30
      */
     private String parseKey(String key, Method method, Object[] args) {

@@ -14,6 +14,7 @@
 
   <modules>
     <module>project-system-api</module>
+    <module>project-player-api</module>
   </modules>
 
   <dependencies>

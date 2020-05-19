@@ -1,10 +1,14 @@
 package com.qp.auth.controller;
 
+import com.qp.auth.model.req.ClientLoginReq;
 import com.qp.auth.model.req.LoginReq;
+import com.qp.auth.model.resp.ClientTokenResp;
 import com.qp.auth.model.resp.TokenResp;
 import com.qp.auth.service.AccessTokenService;
+import com.qp.auth.service.PlayerLoginService;
 import com.qp.auth.service.SysLoginService;
 import com.qp.common.model.ApiResponse;
+import com.qp.player.model.Player;
 import com.qp.system.model.SysUser;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,6 +36,9 @@ public class AuthController {
     @Autowired
     private SysLoginService sysLoginService;
 
+    @Autowired
+    private PlayerLoginService playerLoginService;
+
     /**
      * 登录接口
      *
@@ -40,13 +47,22 @@ public class AuthController {
      * @author Meixi
      * @date 2020/3/13 15:25
      */
-    @ApiOperation("登录接口")
+    @ApiOperation("后台登录接口")
     @PostMapping("/login")
     public ApiResponse<TokenResp> login(@RequestBody LoginReq req) {
         // 用户登录
         SysUser user = sysLoginService.login(req.getUsername(), req.getPassword());
         // 获取登录token
         return new ApiResponse<TokenResp>().success(accessTokenService.createToken(user));
+    }
+
+    @ApiOperation("客户端登录接口")
+    @PostMapping("/clogin")
+    public ApiResponse<ClientTokenResp> clogin(@RequestBody ClientLoginReq req) {
+        // 用户登录
+        Player player = playerLoginService.login(req);
+        // 获取登录token
+        return new ApiResponse<ClientTokenResp>().success(accessTokenService.createToken(player));
     }
 
     /**

@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * 前端接口请求响应对象
- * @author KyrieCao
+ * @author Meixi
  * @date 2020/2/3 22:27
  */
 @Data

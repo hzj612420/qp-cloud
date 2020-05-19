@@ -31,7 +31,7 @@ public class AuthFilter implements GlobalFilter, Ordered
 {
     // 排除过滤的 uri 地址
     // swagger排除自行添加
-    private static final String[]           whiteList = {"/auth/login", "/user/register"};
+    private static final String[]           whiteList = {"/auth/login", "/auth/clogin","/user/register"};
 
     @Resource(name = "stringRedisTemplate")
     private ValueOperations<String, String> ops;
@@ -54,8 +54,35 @@ public class AuthFilter implements GlobalFilter, Ordered
         // token为空
         if (StringUtils.isBlank(token))
         {
-            return setUnauthorizedResponse(exchange, "token can't null or empty string");
+            /*return setUnauthorizedResponse(exchange, "token can't null or empty string");*/
+            return hallToken(exchange,chain);
         }
+        return adminToken(exchange,token,chain);
+    }
+
+    private Mono<Void> hallToken(ServerWebExchange exchange,GatewayFilterChain chain) {
+        String clientToken = exchange.getRequest().getHeaders().getFirst(Constants.CLIENTTOKEN);
+        String userStr = ops.get(Constants.PLAYER_TOKEN + clientToken);
+        if (StringUtils.isBlank(userStr))
+        {
+            return setUnauthorizedResponse(exchange, "token verify error");
+        }
+        JSONObject jo = JSONObject.parseObject(userStr);
+        String playerId = jo.getString("id");
+        // 查询token信息
+        if (StringUtils.isBlank(playerId))
+        {
+            return setUnauthorizedResponse(exchange, "token verify error");
+        }
+        // 设置userId到request里，后续根据userId，获取用户信息
+        ServerHttpRequest mutableReq = exchange.getRequest().mutate().header(Constants.CLIENT_ID, playerId)
+                .header(Constants.CLIENT_USERNAME, jo.getString("loginName")).build();
+        ServerWebExchange mutableExchange = exchange.mutate().request(mutableReq).build();
+        return chain.filter(mutableExchange);
+
+    }
+
+    private Mono<Void> adminToken(ServerWebExchange exchange,String token,GatewayFilterChain chain) {
         String userStr = ops.get(Constants.ACCESS_TOKEN + token);
         if (StringUtils.isBlank(userStr))
         {

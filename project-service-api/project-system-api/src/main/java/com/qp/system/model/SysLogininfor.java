@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * 系统访问记录表 sys_logininfor
  *
- * @author KyrieCao
+ * @author Meixi
  * @date 2020/3/17 14:26
  */
 @Data

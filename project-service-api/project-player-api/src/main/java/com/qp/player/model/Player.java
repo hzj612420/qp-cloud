@@ -310,6 +310,8 @@ public class Player implements Serializable
      * 更新者
      */
     private String updateBy;
+    @ApiModelProperty("站点名称")
+    private String site;
 
     /**
      * 更新时间

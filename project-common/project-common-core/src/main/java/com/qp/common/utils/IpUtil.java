@@ -17,7 +17,7 @@ public class IpUtil {
      *
      * @param request 请求对象
      * @return String
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/2/18 21:18
      */
     public static String getIpAddress(HttpServletRequest request) {

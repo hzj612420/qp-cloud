@@ -3,7 +3,7 @@ package com.qp.common.constants;
 
 /**
  * 权限通用常量
- * @author KyrieCao
+ * @author Meixi
  * @date 2020/3/5 22:18
  */
 public class PermissionConstants

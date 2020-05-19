@@ -10,7 +10,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * Redis配置类
- * @author KyrieCao
+ * @author Meixi
  * @date 2020/3/7 10:37
  */
 @Configuration
@@ -22,7 +22,7 @@ public class RedisConfig {
     /**
      * 实例化 RedisTemplate 对象
      * @return RedisTemplate<String,Object>
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/7 10:45
      */
     @Bean
@@ -41,7 +41,7 @@ public class RedisConfig {
      * 实例化 HashOperations 对象,可以使用 Hash 类型操作
      * @param redisTemplate
      * @return HashOperations<String, String, Object>
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/7 10:46
      */
     @Bean
@@ -53,7 +53,7 @@ public class RedisConfig {
      * 实例化 ValueOperations 对象,可以使用 String 操作
      * @param redisTemplate
      * @return ValueOperations<String, Object>
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/7 10:47
      */
     @Bean
@@ -65,7 +65,7 @@ public class RedisConfig {
      * 实例化 ListOperations 对象,可以使用 List 操作
      * @param redisTemplate
      * @return ListOperations<String, Object>
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/7 10:47
      */
     @Bean
@@ -77,7 +77,7 @@ public class RedisConfig {
      * 实例化 SetOperations 对象,可以使用 Set 操作
      * @param redisTemplate
      * @return SetOperations<String, Object>
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/7 10:48
      */
     @Bean
@@ -89,7 +89,7 @@ public class RedisConfig {
      * 实例化 ZSetOperations 对象,可以使用 ZSet 操作
      * @param redisTemplate
      * @return ZSetOperations<String,Object>
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/7 10:49
      */
     @Bean

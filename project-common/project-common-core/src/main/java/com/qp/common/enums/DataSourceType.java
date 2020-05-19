@@ -2,7 +2,7 @@ package com.qp.common.enums;
 
 /**
  * 数据源类型
- * @author KyrieCao
+ * @author Meixi
  * @version v1.0.0
  * @date 2020/3/16 16:03 03
  */

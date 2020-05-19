@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 角色表表实体类
  *
- * @author KyrieCao
+ * @author Meixi
  * @date 2020/3/9 22:27
  */
 @EqualsAndHashCode(callSuper = true)

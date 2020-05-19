@@ -1,16 +1,11 @@
 package com.qp.player.controller;
 
 import com.qp.common.model.ApiResponse;
+import com.qp.player.model.Player;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.qp.player.model.Player;
+import org.springframework.web.bind.annotation.*;
 import com.qp.player.service.IPlayerService;
 
 import java.util.List;
@@ -80,6 +75,19 @@ public class PlayerController
     public ApiResponse<Integer> remove(String ids)
     {
         return new ApiResponse<Integer>().success(playerService.deletePlayerByIds(ids));
+    }
+
+    @GetMapping("find")
+    public Player find( String username, String site)
+    {
+        System.out.println(username+":"+site);
+        return playerService.selectPlayerByUsernameAndSite(username,site);
+
+    }
+
+    @PostMapping("updateLoginRecord")
+    public void updatePlayerLoginRecord(@RequestBody Player player){
+        playerService.updatePlayerLogin(player);
     }
 
 }

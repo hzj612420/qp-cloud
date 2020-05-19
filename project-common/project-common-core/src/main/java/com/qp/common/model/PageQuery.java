@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  * 分页通用查询条件
- * @author KyrieCao
+ * @author Meixi
  * @date 2020/2/3 22:28
  */
 @Data

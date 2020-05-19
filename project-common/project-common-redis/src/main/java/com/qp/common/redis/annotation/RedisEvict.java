@@ -4,7 +4,7 @@ import java.lang.annotation.*;
 
 /**
  * Redis 删除注解类
- * @author KyrieCao
+ * @author Meixi
  * @date 2020/3/7 10:55
  */
 @Documented
@@ -15,7 +15,7 @@ public @interface RedisEvict {
     /**
      * 键名
      * @return String
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/7 10:56
      */
     String key();
@@ -23,7 +23,7 @@ public @interface RedisEvict {
     /**
      * 主键名
      * @return String
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/7 10:56
      */
     String fieldKey();

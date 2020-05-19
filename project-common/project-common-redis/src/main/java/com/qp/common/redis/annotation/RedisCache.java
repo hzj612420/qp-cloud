@@ -4,7 +4,7 @@ import java.lang.annotation.*;
 
 /**
  * Redis缓存注解类
- * @author KyrieCao
+ * @author Meixi
  * @date 2020/3/7 10:51
  */
 @Documented
@@ -15,7 +15,7 @@ public @interface RedisCache {
     /**
      * 键名
      * @return String
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/7 10:52
      */
     String key() default "";
@@ -23,7 +23,7 @@ public @interface RedisCache {
     /**
      * 主键
      * @return String
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/7 10:53
      */
     String fieldKey();
@@ -31,7 +31,7 @@ public @interface RedisCache {
     /**
      * 过期时间 单位 ms(毫秒)
      * @return long
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/7 10:53
      */
     long expired() default 3600;
@@ -40,7 +40,7 @@ public @interface RedisCache {
      * 是否为查询操作
      * 如果为写入数据库的操作，该值需置为 false
      * @return boolean
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/7 10:54
      */
     boolean read() default true;

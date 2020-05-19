@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 /**
  * 用户状态
  *
- * @author KyrieCao
+ * @author Meixi
  * @date 2020/3/12 21:47
  */
 @AllArgsConstructor

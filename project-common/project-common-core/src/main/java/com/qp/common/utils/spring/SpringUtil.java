@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * spring工具类 方便在非spring管理环境中获取bean
  *
- * @author KyrieCao
+ * @author Meixi
  * @date 2020/3/12 21:26
  */
 @Component
@@ -29,7 +29,7 @@ public class SpringUtil implements BeanFactoryPostProcessor {
      *
      * @param clz class对象
      * @return T
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/12 21:28
      */
     public static <T> T getBean(Class<T> clz) throws BeansException {

@@ -9,7 +9,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 /**
  * 安全配置
- * @author KyrieCao
+ * @author Meixi
  * @version v1.0.0
  * @date 2020/3/4 17:21 21
  */

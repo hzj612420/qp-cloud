@@ -1,6 +1,7 @@
 package com.qp.player.mapper;
 
 import com.qp.player.model.Player;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -61,4 +62,6 @@ public interface PlayerMapper
      * @return 结果
      */
     public int deletePlayerByIds(String[] ids);
+
+    Player selectPlayerByUsernameAndSite(@Param("username") String username,@Param("site") String site);
 }

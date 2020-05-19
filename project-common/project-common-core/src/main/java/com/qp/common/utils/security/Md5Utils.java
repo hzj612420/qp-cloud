@@ -7,7 +7,7 @@ import java.security.MessageDigest;
 /**
  * Md5加密方法
  *
- * @author KyrieCao
+ * @author Meixi
  * @date 2020/3/12 21:58
  */
 @Slf4j

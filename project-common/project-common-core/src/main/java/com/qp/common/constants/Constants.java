@@ -69,13 +69,23 @@ public class Constants {
 
     public static final String CURRENT_USERNAME = "current_username";
 
+    public static final String CLIENT_ID       = "client_id";
+
+    public static final String CLIENT_USERNAME = "client_username";
+
     public static final String TOKEN            = "token";
+
+    public static final String CLIENTTOKEN      = "client_token";
 
     public static final String DEFAULT_CODE_KEY = "random_code_";
 
     public final static String ACCESS_TOKEN     = "access_token_";
 
+    public final static String PLAYER_TOKEN     = "player_token_";
+
     public final static String ACCESS_USER_ID    = "access_userid_";
+
+    public final static String ACCESS_PLAYER_ID    = "access_player_";
 
     public static final String RESOURCE_PREFIX  = "/profile";
 
@@ -151,6 +161,7 @@ public class Constants {
         USER_EXPIRES("000002", "您未登录或登录信息已过期"),
         PARAM_EMPTY("000003", "缺少请求参数"),
         DATA_EMPTY("000004", "未找到目标资源"),
+        USER_OTHERLOGIN("000005", "账号在别处登录"),
         GEN_EXISTS_UNUSABLE_TPL("000100", "存在不可用的模版"),
         DATA_ERROR("999996", "数据异常"),
         BAD_REQUEST("999997", "非法请求"),

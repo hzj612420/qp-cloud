@@ -22,7 +22,7 @@ public class DynamicDataSourceContextHolder {
      * 设置数据源的变量
      *
      * @param dsType 数据库类型
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/16 15:42
      */
     public static void setDataSourceType(String dsType) {
@@ -34,7 +34,7 @@ public class DynamicDataSourceContextHolder {
      * 获得数据源的变量
      *
      * @return String
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/16 15:43
      */
     public static String getDataSourceType() {
@@ -45,7 +45,7 @@ public class DynamicDataSourceContextHolder {
      * 清空数据源变量
      *
      * @return void
-     * @author KyrieCao
+     * @author Meixi
      * @date 2020/3/16 15:44
      */
     public static void clearDataSourceType() {

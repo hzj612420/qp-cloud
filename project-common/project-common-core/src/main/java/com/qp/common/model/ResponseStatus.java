@@ -2,7 +2,7 @@ package com.qp.common.model;
 
 /**
  * 响应状态，所有响应状态均需要实现该接口
- * @author KyrieCao
+ * @author Meixi
  * @date 2020/2/3 22:19
  */
 public interface ResponseStatus {

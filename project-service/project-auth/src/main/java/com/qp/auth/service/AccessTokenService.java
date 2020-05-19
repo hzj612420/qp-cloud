@@ -1,7 +1,9 @@
 package com.qp.auth.service;
 
 
+import com.qp.auth.model.resp.ClientTokenResp;
 import com.qp.auth.model.resp.TokenResp;
+import com.qp.player.model.Player;
 import com.qp.system.model.SysUser;
 
 /**
@@ -42,4 +44,12 @@ public interface AccessTokenService {
      * @date 2020/3/11 15:32
      */
     TokenResp createToken(SysUser sysUser);
+    /**
+     * @Author Meixi
+     * @Description 代码就是梅西写的
+     * @Date 13:33 2020/5/19
+     * @Param [player]
+     * @return com.qp.auth.model.resp.TokenResp
+     **/
+    ClientTokenResp createToken(Player player);
 }

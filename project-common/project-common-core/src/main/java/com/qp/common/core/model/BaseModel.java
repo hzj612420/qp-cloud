@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * 实体基类
  *
- * @author KyrieCao
+ * @author Meixi
  * @date 2020/3/9 22:09
  */
 @Data

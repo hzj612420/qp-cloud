@@ -1,6 +1,7 @@
 package com.qp.player.service;
 
 import com.qp.player.model.Player;
+
 import java.util.List;
 
 /**
@@ -58,4 +59,8 @@ public interface IPlayerService
      * @return 结果
      */
     public int deletePlayerById(Long id);
+
+    Player selectPlayerByUsernameAndSite(String username, String site);
+
+    void updatePlayerLogin(Player player);
 }
