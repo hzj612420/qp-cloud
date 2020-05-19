@@ -1,3 +1,248 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : localhost
+ Source Server Type    : MySQL
+ Source Server Version : 80020
+ Source Host           : localhost:3306
+ Source Schema         : qp_cloud
+
+ Target Server Type    : MySQL
+ Target Server Version : 80020
+ File Encoding         : 65001
+
+ Date: 19/05/2020 20:51:42
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for gen_table
+-- ----------------------------
+DROP TABLE IF EXISTS `gen_table`;
+CREATE TABLE `gen_table`  (
+  `table_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `table_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '表名称',
+  `table_comment` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '表描述',
+  `class_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '实体类名称',
+  `tpl_category` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'crud' COMMENT '使用的模板（crud单表操作 tree树表操作）',
+  `package_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '生成包路径',
+  `module_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '生成模块名',
+  `business_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '生成业务名',
+  `function_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '生成功能名',
+  `function_author` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '生成功能作者',
+  `options` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '其它生成选项',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`table_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of gen_table
+-- ----------------------------
+INSERT INTO `gen_table` VALUES (18, 'player', '玩家表', 'Player', 'crud', 'com.qp.player', 'player', 'player', '玩家', 'Meixi', '{}', 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24', NULL);
+INSERT INTO `gen_table` VALUES (19, 'sys_config', '参数配置表', 'SysConfig', 'crud', 'com.qp.player', 'player', 'config', '参数配置', 'Meixi', NULL, 'admin', '2020-05-19 19:48:25', '', NULL, NULL);
+
+-- ----------------------------
+-- Table structure for gen_table_column
+-- ----------------------------
+DROP TABLE IF EXISTS `gen_table_column`;
+CREATE TABLE `gen_table_column`  (
+  `column_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `table_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '归属表编号',
+  `column_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '列名称',
+  `column_comment` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '列描述',
+  `column_type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '列类型',
+  `java_type` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'JAVA类型',
+  `java_field` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'JAVA字段名',
+  `is_pk` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '是否主键（1是）',
+  `is_increment` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '是否自增（1是）',
+  `is_required` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '是否必填（1是）',
+  `is_insert` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '是否为插入字段（1是）',
+  `is_edit` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '是否编辑字段（1是）',
+  `is_list` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '是否列表字段（1是）',
+  `is_query` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '是否查询字段（1是）',
+  `query_type` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '=' COMMENT '查询方式（等于、不等于、大于、小于、范围）',
+  `html_type` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '显示类型（文本框、文本域、下拉框、复选框、单选框、日期控件）',
+  `dict_type` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '字典类型',
+  `sort` int(0) NULL DEFAULT NULL COMMENT '排序',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`column_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 233 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of gen_table_column
+-- ----------------------------
+INSERT INTO `gen_table_column` VALUES (154, '18', 'id', '玩家ID', 'int', 'Long', 'id', '1', '0', NULL, '1', NULL, NULL, NULL, '=', 'input', '', 1, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (155, '18', 'nick_name', '昵称', 'varchar(64)', 'String', 'nickName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 2, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (156, '18', 'had_icon', '头像', 'int', 'Long', 'hadIcon', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 3, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (157, '18', 'sex', '性别', 'int', 'Long', 'sex', '0', '0', NULL, '1', '1', '1', '1', '=', 'select', '', 4, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (158, '18', 'gold', '玩家携带的金币', 'double', 'Long', 'gold', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 5, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (159, '18', 'vip', 'Vip等级', 'int', 'Long', 'vip', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 6, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (160, '18', 'is_online', '玩家状态 0 离线, -1 闲置, 1 百人牛牛 2......', 'varchar(8)', 'String', 'isOnline', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 7, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (161, '18', 'head_icon_frame', '玩家头相框', 'int', 'Long', 'headIconFrame', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 8, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (162, '18', 'nick_name_modify_time', '昵称修改时的时间', 'timestamp', 'Date', 'nickNameModifyTime', '0', '0', NULL, '1', '1', '1', '1', '=', 'datetime', '', 9, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (163, '18', 'safe_box_gold', '保险箱金币', 'double', 'Long', 'safeBoxGold', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 10, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (164, '18', 'safe_box_pwd', '保险箱密码', 'varchar(64)', 'String', 'safeBoxPwd', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 11, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (165, '18', 'password', '密码', 'varchar(64)', 'String', 'password', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 12, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (166, '18', 'vip_advance_time', 'vip晋级时间', 'timestamp', 'Date', 'vipAdvanceTime', '0', '0', NULL, '1', '1', '1', '1', '=', 'datetime', '', 13, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (167, '18', 'layer', '层级', 'int', 'Long', 'layer', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 14, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (168, '18', 'geted_up_reward_vip_lv_slice', '已领vip晋级奖励的等级的列表', 'int', 'Long', 'getedUpRewardVipLvSlice', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 15, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (169, '18', 'last_login_time', '最后登录时间', 'timestamp', 'Date', 'lastLoginTime', '0', '0', NULL, '1', '1', '1', '1', '=', 'datetime', '', 16, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (170, '18', 'last_login_ip', '最后登录IP', 'varchar(64)', 'String', 'lastLoginIp', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 17, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (171, '18', 'create_time', NULL, 'timestamp', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, '=', 'datetime', '', 18, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (172, '18', 'last_login_device_type', '登录来源 lg：设备类型 1 苹果，2 安卓，3 PC', 'int', 'Long', 'lastLoginDeviceType', '0', '0', NULL, '1', '1', '1', '1', '=', 'select', '', 19, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (173, '18', 'login_days', '登录天数', 'int', 'Long', 'loginDays', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 20, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (174, '18', 'login_times', '登录总次数', 'int', 'Long', 'loginTimes', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 21, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (175, '18', 'today_login_times', '今日登录次数', 'int', 'Long', 'todayLoginTimes', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 22, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (176, '18', 'online_time', '在线总时长（秒）', 'int', 'Long', 'onlineTime', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 23, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (177, '18', 'today_online_time', '当天在线时长（秒）', 'int', 'Long', 'todayOnlineTime', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 24, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (178, '18', 'is_first_pay', '首充，true不是，false是', 'int', 'Long', 'isFirstPay', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 25, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (179, '18', 'device_type', '注册来源 lg：设备类型 1 苹果，2 安卓，3 PC', 'int', 'Long', 'deviceType', '0', '0', NULL, '1', '1', '1', '1', '=', 'select', '', 26, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (180, '18', 'lose_gold_max', '输钱上线', 'double', 'Long', 'loseGoldMax', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 27, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (181, '18', 'lose_alarm_max', '输钱警报上线', 'double', 'Long', 'loseAlarmMax', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 28, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (182, '18', 'win_alarm_max', '赢钱警报上线', 'double', 'Long', 'winAlarmMax', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 29, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (183, '18', 'good_card_rate', '好牌几率 0-100', 'int', 'Long', 'goodCardRate', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 30, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (184, '18', 'bind_device', '绑定设备，暂绑定手机IMEI号即可', 'varchar(64)', 'String', 'bindDevice', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 31, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (185, '18', 'bind_ip', '绑定IP', 'varchar(64)', 'String', 'bindIp', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 32, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (186, '18', 'open_games', '允许进入的游戏', 'int', 'Long', 'openGames', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 33, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (187, '18', 'last_logout_time', '最后登出时间', 'timestamp', 'Date', 'lastLogoutTime', '0', '0', NULL, '1', '1', '1', '1', '=', 'datetime', '', 34, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (188, '18', 'game_platform', '记录玩家当前所在游戏平台', 'int', 'Long', 'gamePlatform', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 35, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (189, '18', 'game_type', '记录玩家当前所在游戏的类型', 'int', 'Long', 'gameType', '0', '0', NULL, '1', '1', '1', '1', '=', 'select', '', 36, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (190, '18', 'game_id', '记录玩家当前所在游戏id', 'int', 'Long', 'gameId', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 37, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (191, '18', 'day_reward_get_day', '最后领取那天的信息', 'int', 'Long', 'dayRewardGetDay', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 38, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (192, '18', 'day_reward_get_time', '最后领取的时间戳', 'int', 'Long', 'dayRewardGetTime', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 39, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (193, '18', 'site_id', '所属站点', 'int', 'Long', 'siteId', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 40, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (194, '18', 'phone', '电话', 'varchar(32)', 'String', 'phone', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 41, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (195, '18', 'salt', '校验码', 'varchar(64)', 'String', 'salt', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 42, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (196, '18', 'real_name', '真实姓名', 'varchar(64)', 'String', 'realName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 43, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (197, '18', 'rebate', '返点', 'double', 'Long', 'rebate', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 44, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (198, '18', 'account_type', '帐号类型 lg：0正常，1试玩,2代玩', 'int', 'Long', 'accountType', '0', '0', NULL, '1', '1', '1', '1', '=', 'select', '', 45, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (199, '18', 'status', '状态	lg：0 正常，1 冻结', 'int', 'Long', 'status', '0', '0', NULL, '1', '1', '1', '1', '=', 'radio', '', 46, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (200, '18', 'agent_status', '代理状态	lg：0 正常，1 冻结', 'int', 'Long', 'agentStatus', '0', '0', NULL, '1', '1', '1', '1', '=', 'radio', '', 47, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (201, '18', 'role', '账号类型 lg：0 系统会员，1 一级代理，2 二级代理', 'int', 'Long', 'role', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 48, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (202, '18', 'is_follow', '是否关注', 'int', 'Long', 'isFollow', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 49, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (203, '18', 'agent_code', '代理邀请码', 'varchar(64)', 'String', 'agentCode', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 50, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (204, '18', 'account', '帐号	对应自定义帐号', 'varchar(64)', 'String', 'account', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 51, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (205, '18', 'wei_xin_union_id', '微信UnionId', 'varchar(64)', 'String', 'weiXinUnionId', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 52, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (206, '18', 'guest_union_id', '游客UnionId', 'varchar(64)', 'String', 'guestUnionId', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 53, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (207, '18', 'wx_open_id', '微信OpenId', 'varchar(64)', 'String', 'wxOpenId', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 54, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (208, '18', 'ali_open_id', '阿里OpenId', 'varchar(64)', 'String', 'aliOpenId', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 55, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (209, '18', 'create_ip', '注册IP', 'varchar(64)', 'String', 'createIp', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 56, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (210, '18', 'create_device_code', '注册机器码', 'varchar(64)', 'String', 'createDeviceCode', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 57, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (211, '18', 'wx_account', '微信账号', 'varchar(64)', 'String', 'wxAccount', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 58, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (212, '18', 'wx_Nickname', '微信昵称', 'varchar(64)', 'String', 'wxNickname', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 59, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (213, '18', 'wx_collection_code', '微信收款码', 'varchar(64)', 'String', 'wxCollectionCode', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 60, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (214, '18', 'ali_account', '支付宝账号', 'varchar(64)', 'String', 'aliAccount', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 61, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (215, '18', 'ali_nickname', '支付宝昵称', 'varchar(64)', 'String', 'aliNickname', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 62, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (216, '18', 'note', '备注', 'varchar(64)', 'String', 'note', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 63, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (217, '18', 'ali_collection_code', '支付宝收款码', 'varchar(64)', 'String', 'aliCollectionCode', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 64, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (218, '18', 'bankcard_no', '银行卡', 'varchar(64)', 'String', 'bankcardNo', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 65, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (219, '18', 'bank_mark', '开户行简写', 'varchar(64)', 'String', 'bankMark', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 66, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (220, '18', 'bank_username', '银行用户名', 'varchar(64)', 'String', 'bankUsername', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 67, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (221, '18', 'bank_address', '银行地址', 'varchar(64)', 'String', 'bankAddress', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 68, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (222, '18', 'qq_account', 'QQ帐号', 'varchar(64)', 'String', 'qqAccount', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 69, 'admin', '2020-05-18 21:38:04', '', '2020-05-18 21:38:24');
+INSERT INTO `gen_table_column` VALUES (223, '19', 'config_id', '参数主键', 'int', 'Long', 'configId', '1', '1', NULL, '1', NULL, NULL, NULL, '=', 'input', '', 1, 'admin', '2020-05-19 19:48:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (224, '19', 'config_name', '参数名称', 'varchar(100)', 'String', 'configName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 2, 'admin', '2020-05-19 19:48:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (225, '19', 'config_key', '参数键名', 'varchar(100)', 'String', 'configKey', '0', '0', NULL, '1', '1', '1', '1', '=', 'input', '', 3, 'admin', '2020-05-19 19:48:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (226, '19', 'config_value', '参数键值', 'varchar(1024)', 'String', 'configValue', '0', '0', NULL, '1', '1', '1', '1', '=', 'textarea', '', 4, 'admin', '2020-05-19 19:48:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (227, '19', 'config_type', '系统内置（Y是 N否）', 'char(1)', 'String', 'configType', '0', '0', NULL, '1', '1', '1', '1', '=', 'select', '', 5, 'admin', '2020-05-19 19:48:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (228, '19', 'create_by', '创建者', 'varchar(64)', 'String', 'createBy', '0', '0', NULL, '1', NULL, NULL, NULL, '=', 'input', '', 6, 'admin', '2020-05-19 19:48:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (229, '19', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, '=', 'datetime', '', 7, 'admin', '2020-05-19 19:48:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (230, '19', 'update_by', '更新者', 'varchar(64)', 'String', 'updateBy', '0', '0', NULL, '1', '1', NULL, NULL, '=', 'input', '', 8, 'admin', '2020-05-19 19:48:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (231, '19', 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, '=', 'datetime', '', 9, 'admin', '2020-05-19 19:48:25', '', NULL);
+INSERT INTO `gen_table_column` VALUES (232, '19', 'remark', '备注', 'varchar(500)', 'String', 'remark', '0', '0', NULL, '1', '1', '1', NULL, '=', 'textarea', '', 10, 'admin', '2020-05-19 19:48:25', '', NULL);
+
+-- ----------------------------
+-- Table structure for player
+-- ----------------------------
+DROP TABLE IF EXISTS `player`;
+CREATE TABLE `player`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '玩家ID',
+  `nick_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '昵称',
+  `had_icon` int(0) NULL DEFAULT NULL COMMENT '头像',
+  `sex` int(0) NULL DEFAULT 0 COMMENT '性别',
+  `gold` double NULL DEFAULT 0 COMMENT '玩家携带的金币',
+  `vip` int(0) NULL DEFAULT 0 COMMENT 'Vip等级',
+  `is_online` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '玩家状态 0 离线, -1 闲置, 1 百人牛牛 2......',
+  `head_icon_frame` int(0) NULL DEFAULT NULL COMMENT '玩家头相框',
+  `nick_name_modify_time` datetime(0) NULL DEFAULT NULL COMMENT '昵称修改时的时间',
+  `safe_box_gold` double NULL DEFAULT NULL COMMENT '保险箱金币',
+  `safe_box_pwd` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '保险箱密码',
+  `password` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '密码',
+  `vip_advance_time` datetime(0) NULL DEFAULT NULL COMMENT 'vip晋级时间',
+  `layer` int(0) NULL DEFAULT NULL COMMENT '层级',
+  `geted_up_reward_vip_lv_slice` int(0) NULL DEFAULT NULL COMMENT '已领vip晋级奖励的等级的列表',
+  `last_login_time` datetime(0) NULL DEFAULT NULL COMMENT '最后登录时间',
+  `last_login_ip` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '最后登录IP',
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `last_login_device_type` int(0) NULL DEFAULT NULL COMMENT '登录来源 lg：设备类型 1 苹果，2 安卓，3 PC',
+  `login_days` int(0) NULL DEFAULT NULL COMMENT '登录天数',
+  `login_times` int(0) NULL DEFAULT NULL COMMENT '登录总次数',
+  `today_login_times` int(0) NULL DEFAULT NULL COMMENT '今日登录次数',
+  `online_time` int(0) NULL DEFAULT NULL COMMENT '在线总时长（秒）',
+  `today_online_time` int(0) NULL DEFAULT NULL COMMENT '当天在线时长（秒）',
+  `is_first_pay` int(0) NULL DEFAULT NULL COMMENT '首充，true不是，false是',
+  `device_type` int(0) NULL DEFAULT NULL COMMENT '注册来源 lg：设备类型 1 苹果，2 安卓，3 PC',
+  `lose_gold_max` double NULL DEFAULT NULL COMMENT '输钱上线',
+  `lose_alarm_max` double NULL DEFAULT NULL COMMENT '输钱警报上线',
+  `win_alarm_max` double NULL DEFAULT NULL COMMENT '赢钱警报上线',
+  `good_card_rate` int(0) NULL DEFAULT NULL COMMENT '好牌几率 0-100',
+  `bind_device` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '绑定设备，暂绑定手机IMEI号即可',
+  `bind_ip` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '绑定IP',
+  `open_games` int(0) NULL DEFAULT NULL COMMENT '允许进入的游戏',
+  `last_logout_time` datetime(0) NULL DEFAULT NULL COMMENT '最后登出时间',
+  `game_platform` int(0) NULL DEFAULT NULL COMMENT '记录玩家当前所在游戏平台',
+  `game_type` int(0) NULL DEFAULT 0 COMMENT '记录玩家当前所在游戏的类型',
+  `game_id` int(0) NULL DEFAULT NULL COMMENT '记录玩家当前所在游戏id',
+  `day_reward_get_day` int(0) NULL DEFAULT 0 COMMENT '最后领取那天的信息',
+  `day_reward_get_time` int(0) NULL DEFAULT 0 COMMENT '最后领取的时间戳',
+  `site_id` int(0) NULL DEFAULT 0 COMMENT '所属站点',
+  `phone` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '电话',
+  `salt` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '校验码',
+  `real_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '真实姓名',
+  `rebate` double NULL DEFAULT NULL COMMENT '返点',
+  `account_type` int(0) NULL DEFAULT NULL COMMENT '帐号类型 lg：0正常，1试玩,2代玩',
+  `status` int(0) NULL DEFAULT NULL COMMENT '状态	lg：0 正常，1 冻结',
+  `agent_status` int(0) NULL DEFAULT NULL COMMENT '代理状态	lg：0 正常，1 冻结',
+  `role` int(0) NULL DEFAULT NULL COMMENT '账号类型 lg：0 系统会员，1 一级代理，2 二级代理',
+  `is_follow` int(0) NULL DEFAULT NULL COMMENT '是否关注',
+  `agent_code` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '代理邀请码',
+  `account` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '帐号	对应自定义帐号',
+  `wei_xin_union_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '微信UnionId',
+  `guest_union_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '游客UnionId',
+  `wx_open_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '微信OpenId',
+  `ali_open_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '阿里OpenId',
+  `create_ip` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '注册IP',
+  `create_device_code` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '注册机器码',
+  `wx_account` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '微信账号',
+  `wx_Nickname` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '微信昵称',
+  `wx_collection_code` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '微信收款码',
+  `ali_account` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '支付宝账号',
+  `ali_nickname` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '支付宝昵称',
+  `note` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '备注',
+  `ali_collection_code` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '支付宝收款码',
+  `bankcard_no` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '银行卡',
+  `bank_mark` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '开户行简写',
+  `bank_username` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '银行用户名',
+  `bank_address` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '银行地址',
+  `qq_account` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT 'QQ帐号',
+  `site` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '站点编号',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '玩家表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of player
+-- ----------------------------
+INSERT INTO `player` VALUES (1, '梅西大爷', 0, 0, 0, 0, NULL, 0, NULL, 0, NULL, '8b508bbb004a3467c3e99d498f67230f', NULL, 0, 0, '2020-05-19 19:28:00', '192.168.2.136', '2020-05-19 10:32:16', 3, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, 0, 0, 0, 0, 0, 1, NULL, '123456', NULL, 0, 1, 0, 0, 0, 0, NULL, '1414', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'site_kaiyuan');
+
 -- ----------------------------
 -- Table structure for sys_dept
 -- ----------------------------
@@ -19,7 +264,7 @@ CREATE TABLE `sys_dept`  (
   `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`dept_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 113 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '部门表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 113 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '部门表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_dept
@@ -51,12 +296,61 @@ CREATE TABLE `sys_logininfor`  (
   `msg` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '提示消息',
   `login_time` datetime(0) NULL DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10818 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10867 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_logininfor
 -- ----------------------------
 INSERT INTO `sys_logininfor` VALUES (10817, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-18 11:50:33');
+INSERT INTO `sys_logininfor` VALUES (10818, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-18 14:45:08');
+INSERT INTO `sys_logininfor` VALUES (10819, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-18 14:53:24');
+INSERT INTO `sys_logininfor` VALUES (10820, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-18 14:53:43');
+INSERT INTO `sys_logininfor` VALUES (10821, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-18 15:28:31');
+INSERT INTO `sys_logininfor` VALUES (10822, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-18 15:28:37');
+INSERT INTO `sys_logininfor` VALUES (10823, '', '192.168.2.156', '内网IP', 'Chrome', 'Windows 10', '1', '* 必须填写', '2020-05-18 18:29:10');
+INSERT INTO `sys_logininfor` VALUES (10824, '123456', '192.168.2.156', '内网IP', 'Chrome', 'Windows 10', '1', '用户不存在/密码错误', '2020-05-18 18:29:23');
+INSERT INTO `sys_logininfor` VALUES (10825, '123456', '192.168.2.156', '内网IP', 'Chrome', 'Windows 10', '1', '用户不存在/密码错误', '2020-05-18 18:29:25');
+INSERT INTO `sys_logininfor` VALUES (10826, '123456', '192.168.2.156', '内网IP', 'Chrome', 'Windows 10', '1', '用户不存在/密码错误', '2020-05-18 18:30:30');
+INSERT INTO `sys_logininfor` VALUES (10827, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-18 18:33:18');
+INSERT INTO `sys_logininfor` VALUES (10828, 'admin', '192.168.2.156', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-05-18 18:33:41');
+INSERT INTO `sys_logininfor` VALUES (10829, 'admin', '192.168.2.156', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-05-18 18:33:45');
+INSERT INTO `sys_logininfor` VALUES (10830, 'admin', '192.168.2.156', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-05-18 18:33:46');
+INSERT INTO `sys_logininfor` VALUES (10831, 'admin', '192.168.2.156', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-05-18 18:33:46');
+INSERT INTO `sys_logininfor` VALUES (10832, 'admin', '192.168.2.156', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-05-18 18:33:47');
+INSERT INTO `sys_logininfor` VALUES (10833, 'admin', '192.168.2.156', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-05-18 18:33:47');
+INSERT INTO `sys_logininfor` VALUES (10834, 'admin', '192.168.2.156', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-05-18 18:33:47');
+INSERT INTO `sys_logininfor` VALUES (10835, 'admin', '192.168.2.156', '内网IP', 'Chrome', 'Windows 10', '0', '登录成功', '2020-05-18 18:33:47');
+INSERT INTO `sys_logininfor` VALUES (10836, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 01:23:07');
+INSERT INTO `sys_logininfor` VALUES (10837, '', '0:0:0:0:0:0:0:1', 'XX XX', 'Chrome', 'Windows 10', '1', '* 必须填写', '2020-05-19 09:56:51');
+INSERT INTO `sys_logininfor` VALUES (10838, '123456', '0:0:0:0:0:0:0:1', 'XX XX', 'Chrome', 'Windows 10', '1', '用户不存在/密码错误', '2020-05-19 09:57:00');
+INSERT INTO `sys_logininfor` VALUES (10839, '123456', '0:0:0:0:0:0:0:1', 'XX XX', 'Chrome', 'Windows 10', '1', '用户不存在/密码错误', '2020-05-19 09:57:05');
+INSERT INTO `sys_logininfor` VALUES (10840, '123456', '0:0:0:0:0:0:0:1', 'XX XX', 'Chrome', 'Windows 10', '1', '用户不存在/密码错误', '2020-05-19 09:57:15');
+INSERT INTO `sys_logininfor` VALUES (10841, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 09:57:50');
+INSERT INTO `sys_logininfor` VALUES (10842, '123456', '0:0:0:0:0:0:0:1', 'XX XX', 'Chrome', 'Windows 10', '1', '用户不存在/密码错误', '2020-05-19 09:57:57');
+INSERT INTO `sys_logininfor` VALUES (10843, '123456', '0:0:0:0:0:0:0:1', 'XX XX', 'Chrome', 'Windows 10', '1', '用户不存在/密码错误', '2020-05-19 09:58:00');
+INSERT INTO `sys_logininfor` VALUES (10844, '123456', '0:0:0:0:0:0:0:1', 'XX XX', 'Chrome', 'Windows 10', '1', '用户不存在/密码错误', '2020-05-19 09:58:01');
+INSERT INTO `sys_logininfor` VALUES (10845, '123456', '0:0:0:0:0:0:0:1', 'XX XX', 'Chrome', 'Windows 10', '1', '用户不存在/密码错误', '2020-05-19 09:58:01');
+INSERT INTO `sys_logininfor` VALUES (10846, '123456', '0:0:0:0:0:0:0:1', 'XX XX', 'Chrome', 'Windows 10', '1', '用户不存在/密码错误', '2020-05-19 09:58:01');
+INSERT INTO `sys_logininfor` VALUES (10847, '123456', '0:0:0:0:0:0:0:1', 'XX XX', 'Chrome', 'Windows 10', '1', '用户不存在/密码错误', '2020-05-19 09:58:02');
+INSERT INTO `sys_logininfor` VALUES (10848, '123456', '0:0:0:0:0:0:0:1', 'XX XX', 'Chrome', 'Windows 10', '1', '用户不存在/密码错误', '2020-05-19 09:58:15');
+INSERT INTO `sys_logininfor` VALUES (10849, 'admin', '0:0:0:0:0:0:0:1', 'XX XX', 'Chrome', 'Windows 10', '0', '登录成功', '2020-05-19 09:58:31');
+INSERT INTO `sys_logininfor` VALUES (10850, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 10:13:00');
+INSERT INTO `sys_logininfor` VALUES (10851, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 10:36:25');
+INSERT INTO `sys_logininfor` VALUES (10852, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 10:36:55');
+INSERT INTO `sys_logininfor` VALUES (10853, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 10:55:35');
+INSERT INTO `sys_logininfor` VALUES (10854, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 11:03:12');
+INSERT INTO `sys_logininfor` VALUES (10855, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 11:04:06');
+INSERT INTO `sys_logininfor` VALUES (10856, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 11:05:09');
+INSERT INTO `sys_logininfor` VALUES (10857, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 11:06:36');
+INSERT INTO `sys_logininfor` VALUES (10858, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 11:07:39');
+INSERT INTO `sys_logininfor` VALUES (10859, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 11:09:58');
+INSERT INTO `sys_logininfor` VALUES (10860, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 11:13:01');
+INSERT INTO `sys_logininfor` VALUES (10861, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 11:25:37');
+INSERT INTO `sys_logininfor` VALUES (10862, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 11:30:47');
+INSERT INTO `sys_logininfor` VALUES (10863, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 11:31:14');
+INSERT INTO `sys_logininfor` VALUES (10864, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 11:39:17');
+INSERT INTO `sys_logininfor` VALUES (10865, 'admin', '127.0.0.1', '内网IP', 'Unknown', 'Unknown', '0', '登录成功', '2020-05-19 11:47:08');
+INSERT INTO `sys_logininfor` VALUES (10866, 'admin', '0:0:0:0:0:0:0:1', 'XX XX', 'Chrome', 'Windows 10', '0', '登录成功', '2020-05-19 12:30:31');
 
 -- ----------------------------
 -- Table structure for sys_oper_log
@@ -79,7 +373,11 @@ CREATE TABLE `sys_oper_log`  (
   `error_msg` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '错误消息',
   `oper_time` datetime(0) NULL DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`oper_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6262 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志记录' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of sys_oper_log
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -99,7 +397,7 @@ CREATE TABLE `sys_role`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`role_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_role
@@ -142,7 +440,7 @@ CREATE TABLE `sys_user`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_user
@@ -160,7 +458,7 @@ CREATE TABLE `sys_user_role`  (
   `user_id` int(0) NOT NULL COMMENT '用户ID',
   `role_id` int(0) NOT NULL COMMENT '角色ID',
   PRIMARY KEY (`user_id`, `role_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户和角色关联表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户和角色关联表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_user_role
@@ -172,76 +470,3 @@ INSERT INTO `sys_user_role` VALUES (3, 2);
 INSERT INTO `sys_user_role` VALUES (4, 2);
 
 SET FOREIGN_KEY_CHECKS = 1;
-
-CREATE TABLE `player` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '玩家ID',
-  `nick_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '昵称',
-  `had_icon` int DEFAULT NULL COMMENT '头像',
-  `sex` int DEFAULT '0' COMMENT '性别',
-  `gold` double DEFAULT '0' COMMENT '玩家携带的金币',
-  `vip` int DEFAULT '0' COMMENT 'Vip等级',
-  `is_online` varchar(8) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '玩家状态 0 离线, -1 闲置, 1 百人牛牛 2......',
-  `head_icon_frame` int DEFAULT NULL COMMENT '玩家头相框',
-  `nick_name_modify_time` datetime DEFAULT NULL COMMENT '昵称修改时的时间',
-  `safe_box_gold` double DEFAULT NULL COMMENT '保险箱金币',
-  `safe_box_pwd` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '保险箱密码',
-  `password` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '密码',
-  `vip_advance_time` datetime DEFAULT NULL COMMENT 'vip晋级时间',
-  `layer` int DEFAULT NULL COMMENT '层级',
-  `geted_up_reward_vip_lv_slice` int DEFAULT NULL COMMENT '已领vip晋级奖励的等级的列表',
-  `last_login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
-  `last_login_ip` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '最后登录IP',
-  `create_time` datetime DEFAULT NULL,
-  `last_login_device_type` int DEFAULT NULL COMMENT '登录来源 lg：设备类型 1 苹果，2 安卓，3 PC',
-  `login_days` int DEFAULT NULL COMMENT '登录天数',
-  `login_times` int DEFAULT NULL COMMENT '登录总次数',
-  `today_login_times` int DEFAULT NULL COMMENT '今日登录次数',
-  `online_time` int DEFAULT NULL COMMENT '在线总时长（秒）',
-  `today_online_time` int DEFAULT NULL COMMENT '当天在线时长（秒）',
-  `is_first_pay` int DEFAULT NULL COMMENT '首充，true不是，false是',
-  `device_type` int DEFAULT NULL COMMENT '注册来源 lg：设备类型 1 苹果，2 安卓，3 PC',
-  `lose_gold_max` double DEFAULT NULL COMMENT '输钱上线',
-  `lose_alarm_max` double DEFAULT NULL COMMENT '输钱警报上线',
-  `win_alarm_max` double DEFAULT NULL COMMENT '赢钱警报上线',
-  `good_card_rate` int DEFAULT NULL COMMENT '好牌几率 0-100',
-  `bind_device` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '绑定设备，暂绑定手机IMEI号即可',
-  `bind_ip` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '绑定IP',
-  `open_games` int DEFAULT NULL COMMENT '允许进入的游戏',
-  `last_logout_time` datetime DEFAULT NULL COMMENT '最后登出时间',
-  `game_platform` int DEFAULT NULL COMMENT '记录玩家当前所在游戏平台',
-  `game_type` int DEFAULT '0' COMMENT '记录玩家当前所在游戏的类型',
-  `game_id` int DEFAULT NULL COMMENT '记录玩家当前所在游戏id',
-  `day_reward_get_day` int DEFAULT '0' COMMENT '最后领取那天的信息',
-  `day_reward_get_time` int DEFAULT '0' COMMENT '最后领取的时间戳',
-  `site_id` int DEFAULT '0' COMMENT '所属站点',
-  `phone` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '电话',
-  `salt` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '校验码',
-  `real_name` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '真实姓名',
-  `rebate` double DEFAULT NULL COMMENT '返点',
-  `account_type` int DEFAULT NULL COMMENT '帐号类型 lg：0正常，1试玩,2代玩',
-  `status` int DEFAULT NULL COMMENT '状态	lg：0 正常，1 冻结',
-  `agent_status` int DEFAULT NULL COMMENT '代理状态	lg：0 正常，1 冻结',
-  `role` int DEFAULT NULL COMMENT '账号类型 lg：0 系统会员，1 一级代理，2 二级代理',
-  `is_follow` int DEFAULT NULL COMMENT '是否关注',
-  `agent_code` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '代理邀请码',
-  `account` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '帐号	对应自定义帐号',
-  `wei_xin_union_id` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '微信UnionId',
-  `guest_union_id` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '游客UnionId',
-  `wx_open_id` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '微信OpenId',
-  `ali_open_id` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '阿里OpenId',
-  `create_ip` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '注册IP',
-  `create_device_code` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '注册机器码',
-  `wx_account` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '微信账号',
-  `wx_Nickname` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '微信昵称',
-  `wx_collection_code` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '微信收款码',
-  `ali_account` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '支付宝账号',
-  `ali_nickname` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '支付宝昵称',
-  `note` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
-  `ali_collection_code` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '支付宝收款码',
-  `bankcard_no` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '银行卡',
-  `bank_mark` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '开户行简写',
-  `bank_username` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '银行用户名',
-  `bank_address` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '银行地址',
-  `qq_account` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'QQ帐号',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='玩家表';
