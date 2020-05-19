@@ -52,6 +52,8 @@ public class AccessTokenServiceImpl implements AccessTokenService {
         token.setUserId(sysUser.getUserId());
         token.setToken(tokenStr);
         token.setExpire(EXPIRE);
+        TokenResp oldToken = redisUtil.get(Constants.ACCESS_USER_ID + sysUser.getUserId(),TokenResp.class);
+        redisUtil.delete(oldToken.getToken());
         // 存入 redis
         redisUtil.set(Constants.ACCESS_TOKEN + tokenStr, sysUser, EXPIRE);
         redisUtil.set(Constants.ACCESS_USER_ID + sysUser.getUserId(), token, EXPIRE);

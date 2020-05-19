@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -16,13 +19,13 @@ import java.util.Date;
  * @date 2020-05-18
  */
 @ApiModel("玩家对象")
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class Player extends BaseModel
+public class Player implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     /** 玩家ID */
+    @ApiModelProperty("玩家ID")
     private Long id;
 
     /** 昵称 */
@@ -55,6 +58,7 @@ public class Player extends BaseModel
 
     /** 昵称修改时的时间 */
     @ApiModelProperty("昵称修改时的时间")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date nickNameModifyTime;
 
     /** 保险箱金币 */
@@ -71,6 +75,7 @@ public class Player extends BaseModel
 
     /** vip晋级时间 */
     @ApiModelProperty("vip晋级时间")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date vipAdvanceTime;
 
     /** 层级 */
@@ -83,6 +88,7 @@ public class Player extends BaseModel
 
     /** 最后登录时间 */
     @ApiModelProperty("最后登录时间")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastLoginTime;
 
     /** 最后登录IP */
@@ -151,6 +157,7 @@ public class Player extends BaseModel
 
     /** 最后登出时间 */
     @ApiModelProperty("最后登出时间")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastLogoutTime;
 
     /** 记录玩家当前所在游戏平台 */
@@ -292,6 +299,23 @@ public class Player extends BaseModel
     /** QQ帐号 */
     @ApiModelProperty("QQ帐号")
     private String qqAccount;
+
+    /**
+     * 创建时间
+     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
+
+    /**
+     * 更新者
+     */
+    private String updateBy;
+
+    /**
+     * 更新时间
+     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date updateTime;
 
     @Override
     public String toString() {
