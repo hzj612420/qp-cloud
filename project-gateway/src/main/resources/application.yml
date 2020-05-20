@@ -65,6 +65,46 @@ spring:
             filters:
               # 限流配置
               - StripPrefix=1
+          #games games
+          - id: project-games
+            uri: lb://project-games
+            predicates:
+              - Path=/games/**
+            filters:
+              # 限流配置
+              - StripPrefix=1
+          #agency 代理
+          - id: project-agency
+            uri: lb://project-agency
+            predicates:
+              - Path=/agency/**
+            filters:
+              # 限流配置
+              - StripPrefix=1
+          #hall
+          - id: project-hall
+            uri: lb://project-hall
+            predicates:
+              - Path=/hall/**
+            filters:
+              # 限流配置
+              - StripPrefix=1
+          #order 订单
+          - id: project-order
+            uri: lb://project-order
+            predicates:
+              - Path=/order/**
+            filters:
+              # 限流配置
+              - StripPrefix=1
+          #customer 客服
+          - id: project-customer
+            uri: lb://project-customer
+            predicates:
+              - Path=/customer/**
+            filters:
+              # 限流配置
+              - StripPrefix=1
 
 eureka:
   client: #客户端注册进eureka服务列表内

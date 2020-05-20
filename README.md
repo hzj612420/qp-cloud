@@ -38,6 +38,8 @@ project-cloud
 ├──project-service-api --服务api模块
 |  |
 |  ├──project-system-api --系统业务api
+|  |
+|  ├──project-player-api --玩家业务api
 |
 ├──project-service --微服务
 |  |
@@ -47,7 +49,17 @@ project-cloud
 |  |
 |  ├──project-gen --代码生成
 |  |
-|  ├──project-dfs --文件
+|  ├──project-player --玩家
+|  |
+|  ├──project-customer --客服
+|  |
+|  ├──project-agency --代理
+|  |
+|  ├──project-games --第三方游戏
+|  |
+|  ├──project-hall --大厅
+|  |
+|  ├──project-order --订单
 |
 ├──project-tool --工具
 |  |

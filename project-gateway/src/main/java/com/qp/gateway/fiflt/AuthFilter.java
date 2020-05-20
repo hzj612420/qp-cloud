@@ -48,7 +48,7 @@ public class AuthFilter implements GlobalFilter, Ordered {
         }
         String token = exchange.getRequest().getHeaders().getFirst(Constants.TOKEN);
         // token为空
-        if (token != null && token.contains(Constants.CLIENT_TOKEN_PIX+)) {
+        if (token != null && token.contains(Constants.CLIENT_TOKEN_PIX)) {
             /*return setUnauthorizedResponse(exchange, "token can't null or empty string");*/
             return hallToken(exchange, chain);
         }

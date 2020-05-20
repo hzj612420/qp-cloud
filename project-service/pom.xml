@@ -16,6 +16,11 @@
     <module>project-system</module>
     <module>project-player</module>
     <module>project-gen</module>
+    <module>project-customer</module>
+    <module>project-hall</module>
+    <module>project-games</module>
+    <module>project-order</module>
+    <module>project-agency</module>
   </modules>
 
 </project>
