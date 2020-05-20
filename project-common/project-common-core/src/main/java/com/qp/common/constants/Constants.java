@@ -75,7 +75,7 @@ public class Constants {
 
     public static final String TOKEN            = "token";
 
-    public static final String CLIENTTOKEN      = "client_token";
+    public static final String CLIENT_TOKEN_PIX ="client_";
 
     public static final String DEFAULT_CODE_KEY = "random_code_";
 

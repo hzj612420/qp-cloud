@@ -66,7 +66,7 @@ public class AccessTokenServiceImpl implements AccessTokenService {
     @Override
     public ClientTokenResp createToken(Player player) {
         // 生成token
-        String tokenStr = RandomUtil.UUID32();
+        String tokenStr =Constants.CLIENT_TOKEN_PIX+ RandomUtil.UUID32();
         // 保存或更新用户token
         ClientTokenResp token = new ClientTokenResp();
         token.setPlayerId(player.getId());
